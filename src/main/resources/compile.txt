@@ -1,0 +1,35 @@
+
+float PI = 3.141592;
+int Integer = 54;
+float Floater = 32;
+
+void main(){
+    {
+        int x = Integer;
+        int y = 2;
+        int z;
+
+        println("Hello, World!");
+    }
+
+    return;
+}
+
+uint getIndex(uint x, uint y, uint z){
+    return y;
+}
+
+RootNode:
+    VarNode: (float) 'PI' = 3.141592
+    VarNode: (int)   'Integer' = 54
+    VarNode: (float) 'Floater' = 32
+
+    FuncNode: main() => uint
+        VarNode: (int) 'x' = variable(Integer)
+        VarNode: (int) 'y' = number(2)
+        VarNode: (int) 'z'
+        CallNode: println( literal(Hello, World!) )
+        ReturnNode:
+
+    FuncNode: getIndex(int x, int y, int z) => uint
+        ReturnNode: variable(y);
