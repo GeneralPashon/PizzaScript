@@ -1,5 +1,6 @@
 package com.pizzascript;
 
+import com.pizzascript.parse.NumberExpressionParser;
 import com.pizzascript.token.Lexer;
 import com.pizzascript.token.Token;
 import com.pizzascript.parse.Parser;
@@ -12,6 +13,22 @@ import java.util.List;
 public class Main{
 
     public static void main(String[] args){
+        parseMathExpression();
+        // compileHelloWorld();
+    }
+
+    private static void parseMathExpression(){
+        // num test
+        final Lexer numLexer = new Lexer();
+        numLexer.tokenize("(((((2)))) + 16) ** 2 + (2 + 0 + 3 * 54)");
+        numLexer.print();
+        final List<Token> numTokens = numLexer.getTokens();
+
+        final NumberExpressionParser numParser = new NumberExpressionParser();
+        numParser.parseExpression(numTokens);
+    }
+
+    private static void compileHelloWorld(){
         // Compile file name
         final String fileName = "hello_world";
 
@@ -36,7 +53,6 @@ public class Main{
         //NasmUtils.compileAndRun(fileName);
 
         // Print program tree
-        System.out.println();
         TreePrinter.print(programTree);
     }
 

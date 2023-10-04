@@ -7,9 +7,11 @@ import com.pizzascript.parse.tree.node.VarNode;
 import com.pizzascript.parse.tree.node.*;
 import com.pizzascript.token.Token;
 import com.pizzascript.token.TokenType;
+import jpize.math.Mathc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Parser{
 
@@ -127,8 +129,10 @@ public class Parser{
 
                 // list value tokens
                 final List<Token> valueTokens = new ArrayList<>();
-                while(!tokens.matchNextToken(TokenType.SEMICOLON))
+                while(!tokens.current.match(TokenType.SEMICOLON)){
                     valueTokens.add(tokens.current);
+                    tokens.next();
+                }
 
                 // parse value
                 final RawValue value = new RawValue(valueTokens.toArray(new Token[0]));
@@ -261,13 +265,7 @@ public class Parser{
         }
     }
 
-    private void parseMultipleTokenValue(ListNode parent, DataType valueDataType, Token[] valueTokens){
-        //    1 * 3  + 3  -  4 * 2
-        //   (1 * 3) + 3  -  4 * 2
-        //   (1 * 3) + 3  - (4 * 2)
-        //  ((1 * 3) + 3) - (4 * 2)
-        // (((1 * 3) + 3) - (4 * 2))
-
+    private void parseMultipleTokenValue(ListNode parent, DataType dataType, Token[] inputTokens){
 
     }
 

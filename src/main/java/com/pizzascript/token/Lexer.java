@@ -63,6 +63,8 @@ public class Lexer{
             System.out.print(" ".repeat(15 - type.length()));
             System.out.println(token.string);
         }
+
+        System.out.println();
     }
 
 }
